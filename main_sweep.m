@@ -78,20 +78,18 @@ plot(res_ref.t, res_ref.a/p.g, '--', 'Color', cRef, 'LineWidth', 1.5);
 grid on; xlabel('t [s]'); ylabel('a [g]'); title('Acceleration');
 
 subplot(2,3,5);
-plot(res_opt.t, res_opt.Fz_f, 'b-', 'LineWidth', 1.8); hold on;
-plot(res_opt.t, res_opt.Fz_r, 'r-', 'LineWidth', 1.8);
-grid on; xlabel('t [s]'); ylabel('axle load [N]'); title('Axle loads (optimal ratio)');
-legend('front', 'rear', 'Location', 'best');
-
-subplot(2,3,6);
 plot(res_opt.t, res_opt.Fx_f, 'b-', 'LineWidth', 1.8); hold on;
 plot(res_opt.t, res_opt.Fx_r, 'r-', 'LineWidth', 1.8);
-yyaxis right;
-plot(res_opt.t, res_opt.P_el/1e3, 'k-', 'LineWidth', 1.2);
-ylabel('electrical power [kW]');
-yyaxis left; ylabel('drive force per axle [N]');
-grid on; xlabel('t [s]'); title('Drive force and power (optimal ratio)');
-legend('front axle', 'rear axle', 'power', 'Location', 'best');
+grid on; xlabel('t [s]'); ylabel('drive force per axle [N]');
+title('Drive force (optimal ratio)');
+legend('front axle', 'rear axle', 'Location', 'northeast');
+
+subplot(2,3,6);
+plot(res_opt.t, res_opt.P_el/1e3, 'k-', 'LineWidth', 1.8); hold on;
+yline(p.batt.P_max/1e3, 'r--', 'LineWidth', 1.2, 'Label', 'power limit');
+grid on; xlabel('t [s]'); ylabel('electrical power [kW]');
+title('Electrical power (optimal ratio)');
+ylim([0 1.15*p.batt.P_max/1e3]);
 
 sgtitle(sprintf('75 m acceleration  |  optimal i = %.2f  (%.2f to %.2f within %.0f ms)  |  t = %.3f s', ...
         i_opt, i_lo, i_hi, band*1e3, t_opt));
