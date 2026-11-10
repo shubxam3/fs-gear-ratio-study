@@ -142,7 +142,6 @@ Each step was added because the previous version gave an answer that did not hol
 6. **Loss model.** Copper, core, inverter and gearbox losses, battery power and energy, and the power limit applied electrically instead of mechanically.
 7. **All four events.** Lap simulation, scoring formulas and the points heatmap.
 8. **Single-track cornering model**, so corner speed depends on which axle runs out of grip.
-9. **Comparison with a second model** written independently by a teammate. Both gave the same ratio and differed by 4.7 % in time; every difference was traced to a named assumption (measured against analytic torque curve, winding temperature, aero data).
 
 ## Limitations
 
