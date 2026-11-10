@@ -10,7 +10,7 @@ addpath(fullfile(fileparts(mfilename('fullpath')), 'src'));
 p = params_generic();
 
 i_sweep = 6 : 0.05 : 16;      % gear ratios to test
-i_ref   = 12.0;               % reference ratio to compare against
+i_ref   = 9.0;                % a shorter ratio, for comparison
 band    = 0.01;               % "as good as optimal" tolerance [s]
 
 %% Sweep
@@ -85,17 +85,14 @@ title('Drive force (optimal ratio)');
 legend('front axle', 'rear axle', 'Location', 'northeast');
 
 subplot(2,3,6);
-plot(res_opt.t, res_opt.P_el/1e3, 'k-', 'LineWidth', 1.8); hold on;
+plot(res_opt.t, res_opt.P_batt/1e3, 'k-', 'LineWidth', 1.8); hold on;
 yline(p.batt.P_max/1e3, 'r--', 'LineWidth', 1.2, 'Label', 'power limit');
-grid on; xlabel('t [s]'); ylabel('electrical power [kW]');
-title('Electrical power (optimal ratio)');
+grid on; xlabel('t [s]'); ylabel('battery power [kW]');
+title('Battery power (optimal ratio)');
 ylim([0 1.15*p.batt.P_max/1e3]);
-
-sgtitle(sprintf('75 m acceleration  |  optimal i = %.2f  (%.2f to %.2f within %.0f ms)  |  t = %.3f s', ...
-        i_opt, i_lo, i_hi, band*1e3, t_opt));
 
 %% Save figure for the README
 outDir = fullfile(fileparts(mfilename('fullpath')), 'docs');
 if ~exist(outDir, 'dir'), mkdir(outDir); end
-exportgraphics(fig, fullfile(outDir, 'sweep_result.png'), 'Resolution', 150);
-fprintf('Figure saved to docs/sweep_result.png\n');
+print(fig, fullfile(outDir, 'acceleration_result.png'), '-dpng', '-r150');
+fprintf('Figure saved to docs/acceleration_result.png\n');
