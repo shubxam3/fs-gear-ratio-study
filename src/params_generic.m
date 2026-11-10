@@ -38,10 +38,10 @@ p.aero.balance_front = 0.50;            % share of downforce on the front axle [
 % model = 'magic'    : simplified Magic Formula with load sensitivity
 p.tire.model  = 'magic';
 p.tire.mu     = 1.4;                    % used by the 'constant' model
-p.tire.B      = 10.0;                   % stiffness factor
+p.tire.B      = 18.0;                   % stiffness factor
 p.tire.C      = 1.65;                   % shape factor
 p.tire.D      = 1.70;                   % peak friction coefficient at zero load
-p.tire.E      = 0.97;                   % curvature factor
+p.tire.E      = 0.50;                   % curvature factor (peak force near 10 % slip)
 p.tire.a_load = 1.2e-4;                 % load sensitivity [1/N]
 
 % Slip ratio at which the tyre produces peak force. The simulation assumes

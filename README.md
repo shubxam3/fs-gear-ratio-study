@@ -33,6 +33,25 @@ a      = ( F_front + F_rear − F_drag − F_roll ) / m_eff
 
 Load transfer depends on acceleration, and acceleration depends on the loads. The loop is broken by using the acceleration from the previous time step, which is what the Memory block does in the Simulink version.
 
+## Results with the generic parameter set
+
+250 kg car with driver, four motors, Magic Formula tyres, 80 kW limit:
+
+| | Gear ratio | Time over 75 m | Speed at finish | Motor speed at finish |
+|---|---|---|---|---|
+| Optimum | 12.15 | 3.607 s | 124 km/h | 17 500 rpm |
+| Within 10 ms of the optimum | 11.65 to 14.40 | up to 3.617 s | | |
+| Too short a ratio | 8.00 | 3.804 s | 123 km/h | 11 500 rpm |
+| Too long a ratio | 16.00 | 3.689 s | 107 km/h | 20 000 rpm (limit) |
+
+What the sweep shows:
+
+- **The optimum is flat.** Any ratio between 11.65 and 14.40 is within 10 ms, so the gearbox designers can pick tooth counts for strength and packaging inside that band.
+- **Below the band the car is torque-limited.** At i = 8 the motors cannot deliver the force the tyres could transmit, and the run is 0.2 s slower.
+- **Above the band the motor runs out of speed.** From about i = 14 the motors reach 20 000 rpm before the finish line and the car stops accelerating.
+- **Three limits act in sequence.** With the optimal ratio the run is traction-limited for the first 1.6 s, and the 80 kW limit is active from 44 km/h (0.9 s) to the finish. Peak acceleration is 1.44 g.
+- **The power limit dominates.** Without it the same car would need 3.33 s, so the rule costs about 0.28 s. Rotor and wheel inertia add 27 kg of effective mass at the optimal ratio.
+
 ## Running it
 
 MATLAB script version (no toolboxes needed):
