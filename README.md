@@ -154,4 +154,4 @@ Each step was added because the previous version gave an answer that did not hol
 
 ## Author
 
-Shubham Pathak, M.Sc. student in Mechatronics and Information Technology at KIT.
+Shubham Pathak
