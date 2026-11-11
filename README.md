@@ -20,8 +20,6 @@ The planetary gearbox can only be built with certain tooth counts, so the useful
 | `study_losses.m` | What does each ratio cost in time, energy and losses? | Quasi-steady-state lap simulation |
 | `study_points.m` | Which ratio scores the most points over all events? | Both, with the FS 2026 scoring formulas |
 
-Each script runs on its own, prints its result and saves a figure to `docs/`. No toolboxes are needed. They also run in GNU Octave 11.
-
 ## Model
 
 | Part | How it is modelled |
